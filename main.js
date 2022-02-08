@@ -25,7 +25,7 @@ else if, and else statements) then log the result.
     -if combine--> prompt 2 primary colors, one at a time 
          if color+color--> log created new color
 
-    -if deconstruct, prompt single color to deconstruct
+    -if deconstruct, prompt which single color to deconstruct
         if (single color)--> log the two colors
 
 */
@@ -33,14 +33,21 @@ else if, and else statements) then log the result.
 const prompt = require('prompt-sync')();
 
 //choose
-let choose = prompt("Would you like to combine colors, or deconstruct a color? ");
+let choose = prompt("Would you like to combine colors, or deconstruct a color? Type 1 to combine, or 2 to deconstruct. ");
 
 
 //combine
-if (choose === "combine") {
+if (choose === "1") {
     let primary1 = prompt("Choose a primary color; red, yellow, or blue: ");
+    if (primary1 !== "red" &&  primary1 !== "blue" && primary1 !== "yellow") {
+        console.log("Error, this is not a primary color. Please try again");
+        return;
+     }
     let primary2 = prompt("Choose a second primary color: ");
-
+    
+    if (primary2 !== "red" &&  primary2 !== "blue" && primary2 !== "yellow") {
+        console.log("Error, this is not a primary color. Please try again.");
+     }
     if (primary1 === "red" && primary2 === "blue") {
         console.log("You've created purple!");
     }
@@ -52,10 +59,8 @@ if (choose === "combine") {
     }
 }
 
-
-
 //deconstruct
-else if (choose === "deconstruct") {
+else if (choose === "2") {
     let decon = prompt("Would you like to deconstruct purple, orange, or green? ");
 
     if (decon === "purple") {
@@ -66,6 +71,9 @@ else if (choose === "deconstruct") {
     }
     else if (decon === "green") {
         console.log("Green is created by combining blue and yellow.");
+    }
+    else{
+        console.log("Error, this is not a secondary color. Please try again.")
     }
 }
 
